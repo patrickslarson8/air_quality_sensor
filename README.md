@@ -23,3 +23,11 @@ Adafruit PM 2.5 Sensor (https://learn.adafruit.com/pm25-air-quality-sensor)
 1. Disable Pi serial console and enable serial port in Raspi-Config
 2. install CircuitPyton PM2.5 library (https://github.com/adafruit/Adafruit_CircuitPython_PM25)
 3. Use sensor
+
+### Set up database
+1. tinySQL?
+
+### Set up webserver
+1. Create webpage
+2. Create webserver
+3. Update page with data from DB
