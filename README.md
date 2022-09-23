@@ -34,6 +34,7 @@ sqlite> CREATE TABLE SENSORS_data (timestamp DATETIME,  temp NUMERIC, humid NUME
 sqlite> COMMIT;  
 
 ### Set up webserver
+(https://medium.com/@rovai/from-data-to-graph-a-web-jorney-with-flask-and-sqlite-6c2ec9c0ad0)  
 1. Create webpage
 2. Create webserver
 3. Update page with data from DB
