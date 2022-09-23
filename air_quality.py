@@ -1,7 +1,6 @@
 # This script captures data from the sensors and logs it.
 # Todo: 
 # 1. Capture data from all sensors
-#   a. Deconflict I2C libraries (PM2.5 uses BUSIO but other use BOARD)
 # 2. Log data to prevent memory filling
 # 3. Create web dashboard for tracking
 
@@ -40,6 +39,8 @@ class airQuality:
   temp = 0
   humid = 0
   voc = 0
+ 
+myAir = airQuality()
 
 # Stabilize readings
 print("Waiting for readings to stabilize")
@@ -48,5 +49,14 @@ time.sleep(180) #pm25 requires 30 sec. SGP40 recommends several minutes before r
 # Read and log sensors
 while True:
   # Read sensors
+  # Get temp and humid readings first to be used in VOC
+  myAir.temp = scd4x.temperature
+  myAir.humid = scd4x.relative_humidity
+  myAir.co2 = scd4x.CO2
+  myAir.voc = sgp.measure_index(temperature=myAir.temp, relative_humidity=myAir.humid)
+  aqdata = pm25.read()
+  myAir.pm10 = aqdata["pm10 env"]
+  myAir.pm25 = aqdata["pm25 env"]
+  
   # log sensors
   time.sleep(1)
