@@ -1,9 +1,9 @@
-#Air Quality Sensor
+# Air Quality Sensor
 A small air quality sensor that measures various 
 aspects and logs them for later analysis.
 Measures: VOC, C02, temperature, PM2.5, and humidity
 
-##Hardware
+## Hardware
 Raspberry Pi
 Adafruit SGP40 (https://learn.adafruit.com/adafruit-sgp40/python-circuitpython)
 Adafruit SCD-40 (https://learn.adafruit.com/adafruit-scd-40-and-scd-41/python-circuitpython)
