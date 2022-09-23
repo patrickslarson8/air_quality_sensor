@@ -12,6 +12,11 @@ import adafruit_sgp40
 import adafruit_scd4x
 from digitalio import DigitalInOut, Direction, Pull
 from adafruit_pm25.i2c import PM25_I2C
+import sqlite3 as lite
+import sys
+
+# Connect to local database
+con = lite.connect('sensorsData.db')
 
 # Set up IO
 # i2c = board.I2C()  # uses board.SCL and board.SDA # From scp and sgp, I think same as following cmd
@@ -47,6 +52,8 @@ print("Waiting for readings to stabilize")
 time.sleep(180) #pm25 requires 30 sec. SGP40 recommends several minutes before reading
 
 # Read and log sensors
+with con:
+  cur = con.cursor()
 while True:
   # Read sensors
   # Get temp and humid readings first to be used in VOC
@@ -59,4 +66,10 @@ while True:
   myAir.pm25 = aqdata["pm25 env"]
   
   # log sensors
+  # Table format is:
+  # time, temp, humid, carbon, voc, pm10, pm25
+  cur.execute("INSERT INTO SENSORS_data VALUES(datetime('now'), myAir.temp, myAir.humid,
+              myAir.co2, myAir.voc, myAir.pm10, myAir.pm25)")
+  
+  # Sleep for timing interval
   time.sleep(1)
