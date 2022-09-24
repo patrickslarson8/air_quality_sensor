@@ -9,6 +9,27 @@ Adafruit SGP40 (https://learn.adafruit.com/adafruit-sgp40/python-circuitpython)
 Adafruit SCD-40 (https://learn.adafruit.com/adafruit-scd-40-and-scd-41/python-circuitpython)  
 Adafruit PM 2.5 Sensor (https://learn.adafruit.com/pm25-air-quality-sensor)  
 
+## How to use
+1. Download repo
+2. Install sqlite3
+~~~
+sudo apt-get install sqlite3
+~~~
+3. Install requirements.txt
+~~~
+pip3 install -r requirements.txt
+~~~
+4. Create SQLite database
+~~~
+sqlite3 sensorsData.db
+sqlite> BEGIN;
+sqlite> CREATE TABLE SENSORS_data (timestamp DATETIME, temp NUMERIC, humid NUMERIC, carbon NUMERIC, voc NUMERIC, pm10 NUMERIC, pm25 NUMERIC);
+sqlite> COMMIT;
+~~~
+5. Configure air_quality.py and webserver.py to autostart
+~~~
+~~~
+
 ## todo
 ### Setting up SGP40 (I2C)
 1. Install adafruit-blinka library
@@ -23,15 +44,6 @@ Adafruit PM 2.5 Sensor (https://learn.adafruit.com/pm25-air-quality-sensor)
 1. Disable Pi serial console and enable serial port in Raspi-Config
 2. install CircuitPyton PM2.5 library (https://github.com/adafruit/Adafruit_CircuitPython_PM25)
 3. Use sensor
-
-### Set up database
-#### 1. Install SQLite
-Install sudo apt-get install sqlite3
-#### 2. Make local database
-sqlite3 sensorsData.db  
-sqlite> BEGIN;  
-sqlite> CREATE TABLE SENSORS_data (timestamp DATETIME,  temp NUMERIC, humid NUMERIC, carbon NUMERIC, voc NUMERIC, pm10 NUMERIC, pm25 NUMERIC);  
-sqlite> COMMIT;  
 
 ### Set up webserver
 (https://medium.com/@rovai/from-data-to-graph-a-web-jorney-with-flask-and-sqlite-6c2ec9c0ad0)  
