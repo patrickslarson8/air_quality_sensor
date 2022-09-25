@@ -11,9 +11,9 @@ Adafruit PM 2.5 Sensor (https://learn.adafruit.com/pm25-air-quality-sensor)
 
 ## How to use
 1. Download repo
-2. Install sqlite3
+2. Install requirements
 ~~~
-sudo apt-get install sqlite3
+sudo apt-get install sqlite3 python3-pip
 ~~~
 3. Install requirements.txt
 ~~~
