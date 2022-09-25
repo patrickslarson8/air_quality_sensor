@@ -1,6 +1,4 @@
-time
-board
-busio
+circup
 serial
 Adafruit-Blinka
 adafruit-circuitpython-busdevice
