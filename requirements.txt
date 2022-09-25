@@ -4,7 +4,6 @@ Adafruit-Blinka
 adafruit-circuitpython-busdevice
 adafruit-circuitpython-sgp40
 adafruit-circuitpython-scd4x
-digitalio
 adafruit-circuitpython-pm25
 sqlite3
 sys
