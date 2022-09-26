@@ -23,7 +23,7 @@ pip3 install -r requirements.txt
 ~~~
 sqlite3 sensorsData.db
 sqlite> BEGIN;
-sqlite> CREATE TABLE SENSORS_data (timestamp DATETIME, temp NUMERIC, humid NUMERIC, carbon NUMERIC, voc NUMERIC, pm10 NUMERIC, pm25 NUMERIC);
+sqlite> CREATE TABLE SENSORS_data (timestamp DATETIME, temp NUMERIC, humid NUMERIC, carbon NUMERIC, voc NUMERIC, pm10 NUMERIC, pm25 NUMERIC, note TEXT);
 sqlite> COMMIT;
 ~~~
 5. Configure air_quality.py and webserver.py to autostart
