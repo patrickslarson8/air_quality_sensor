@@ -1,6 +1,5 @@
 # This script captures data from the sensors and logs it.
-# Todo: 
-# 1. Capture data from all sensors
+# Todo:
 # 2. Log data to prevent memory filling
 # 3. Create web dashboard for tracking
 
@@ -44,16 +43,19 @@ class airQuality:
   temp = 0
   humid = 0
   voc = 0
- 
+
+
 myAir = airQuality()
+
 
 # Stabilize readings
 print("Waiting for readings to stabilize")
-time.sleep(180) #pm25 requires 30 sec. SGP40 recommends several minutes before reading
+time.sleep(180)  # pm25 requires 30 sec. SGP40 recommends several minutes before reading
 
 # Read and log sensors
 with con:
   cur = con.cursor()
+
 while True:
   # Read sensors
   # Get temp and humid readings first to be used in VOC
@@ -68,8 +70,7 @@ while True:
   # log sensors
   # Table format is:
   # time, temp, humid, carbon, voc, pm10, pm25
-  cur.execute("INSERT INTO SENSORS_data VALUES(datetime('now'), myAir.temp, myAir.humid,
-              myAir.co2, myAir.voc, myAir.pm10, myAir.pm25)")
+  cur.execute("INSERT INTO SENSORS_data VALUES(datetime('now'), myAir.temp, myAir.humid, myAir.co2, myAir.voc, myAir.pm10, myAir.pm25)")
   
   # Sleep for timing interval
   time.sleep(1)
