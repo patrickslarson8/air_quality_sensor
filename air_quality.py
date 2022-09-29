@@ -18,8 +18,11 @@ import sys
 con = lite.connect('sensorsData.db')
 
 # Set up IO
-# i2c = board.I2C()  # uses board.SCL and board.SDA # From scp and sgp, I think same as following cmd
 i2c = busio.I2C(board.SCL, board.SDA, frequency=100000)
+uart = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=0.25)
+reset_pin = DigitalInOut(board.G0)
+reset_pin.direction = Direction.OUTPUT
+reset_pin.value = False
 
 # Set up devices
 # sgp
@@ -30,10 +33,7 @@ scd4x = adafruit_scd4x.SCD4X(i2c)
 scd4x.start_periodic_measurement()
 
 #pm25
-reset_pin = DigitalInOut(board.G0)
-reset_pin.direction = Direction.OUTPUT
-reset_pin.value = False
-pm25 = PM25_I2C(i2c, reset_pin)
+pm25 = adafruit_pm25.uart.PM25_UART(uart, reset_pin)
 
 # Set up object to save data
 class airQuality:

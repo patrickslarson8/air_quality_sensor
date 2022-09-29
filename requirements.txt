@@ -1,5 +1,5 @@
 circup
-serial
+pyserial
 Adafruit-Blinka
 adafruit-circuitpython-busdevice
 adafruit-circuitpython-sgp40
