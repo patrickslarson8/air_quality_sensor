@@ -10,7 +10,7 @@ import serial
 import adafruit_sgp40
 import adafruit_scd4x
 from digitalio import DigitalInOut, Direction, Pull
-from adafruit_pm25.i2c import PM25_I2C
+from adafruit_pm25.uart import PM25_UART
 import sqlite3 as lite
 import sys
 
@@ -20,20 +20,22 @@ con = lite.connect('sensorsData.db')
 # Set up IO
 i2c = busio.I2C(board.SCL, board.SDA, frequency=100000)
 uart = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=0.25)
-reset_pin = DigitalInOut(board.G0)
-reset_pin.direction = Direction.OUTPUT
-reset_pin.value = False
+
+reset_pin = None
+#reset_pin = DigitalInOut(board.G0)
+#reset_pin.direction = Direction.OUTPUT
+#reset_pin.value = False
 
 # Set up devices
 # sgp
-sgp = adafruit_sgp40(i2c)
+sgp = adafruit_sgp40.SGP40(i2c)
 
 # scd
 scd4x = adafruit_scd4x.SCD4X(i2c)
 scd4x.start_periodic_measurement()
 
 #pm25
-pm25 = adafruit_pm25.uart.PM25_UART(uart, reset_pin)
+pm25 = PM25_UART(uart, reset_pin)
 
 # Set up object to save data
 class airQuality:
