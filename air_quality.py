@@ -72,7 +72,10 @@ while True:
   # log sensors
   # Table format is:
   # time, temp, humid, carbon, voc, pm10, pm25
-  cur.execute("INSERT INTO SENSORS_data VALUES(datetime('now'), myAir.temp, myAir.humid, myAir.co2, myAir.voc, myAir.pm10, myAir.pm25)")
+  newEntry = "INSERT INTO SENSORS_data VALUES(datetime('now'),
+    {}, {}, {}, {}, {}, {}".format(
+    myAir.temp, myAir.humid, myAir.co2, myAir.voc, myAir.pm10, myAir.pm25)
+  cur.execute(newEntry)
   
   # Sleep for timing interval
   time.sleep(1)
