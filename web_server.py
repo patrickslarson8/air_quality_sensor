@@ -1,7 +1,11 @@
 from flask import Flask
 import altair as alt
+import sqlite3 as lite
 
 #todo
+# Create connection to database
+conn = lite.connect('sensorsData.db')
+cur = conn.cursor()
 #data = read from database
 
 
