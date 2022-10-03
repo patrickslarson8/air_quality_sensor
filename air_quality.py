@@ -52,7 +52,7 @@ myAir = airQuality()
 
 # Stabilize readings
 print("Waiting for readings to stabilize")
-time.sleep(30)  # pm25 requires 30 sec. SGP40 recommends several minutes before reading
+time.sleep(180)  # pm25 requires 30 sec. SGP40 recommends several minutes before reading
 
 # Read and log sensors
 with con:
@@ -72,9 +72,10 @@ while True:
   # log sensors
   # Table format is:
   # time, temp, humid, carbon, voc, pm10, pm25
-  newEntry = "INSERT INTO SENSORS_data (timestamp, temp, humid, carbon, voc, pm10, pm25) VALUES (datetime('now'), {}, {}, {}, {}, {}, {})".format(myAir.temp, myAir.humid, myAir.co2, myAir.voc, myAir.pm10, myAir.pm25)
-  print(newEntry) 
+  newEntry = "INSERT INTO SENSORS_data (timestamp, temp, humid, carbon, voc, pm10, pm25) VALUES (datetime('now'), {}, {}, {}, {}, {}, {});".format(myAir.temp, myAir.humid, myAir.co2, myAir.voc, myAir.pm10, myAir.pm25)
+  #print(newEntry) 
   cur.execute(newEntry)
+  con.commit()
   
   # Sleep for timing interval
-  time.sleep(1)
+  time.sleep(5)
