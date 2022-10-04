@@ -6,7 +6,7 @@ import sqlite3 as lite
 # Create connection to database
 conn = lite.connect('sensorsData.db')
 cur = conn.cursor()
-selectStatement = "SELECT * FROM SENSORS_data"
+selectStatement = "SELECT * FROM SENSORS_data;"
 cur.execute(selectStatement)
 data = cur.fetchall()
 #data = read from database
