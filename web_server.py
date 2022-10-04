@@ -1,16 +1,14 @@
 from flask import Flask
 import altair as alt
 import sqlite3 as lite
+import pandas as pd
 
-#todo
 # Create connection to database
 conn = lite.connect('sensorsData.db')
-cur = conn.cursor()
-selectStatement = "SELECT * FROM SENSORS_data;"
-cur.execute(selectStatement)
-data = cur.fetchall()
-#data = read from database
 
+# Get information from database into a dataframe
+selectStatement = "SELECT * FROM SENSORS_data;"
+df = pd.read_sql_query(selectStatement, conn)
 
 # base = alt.Chart(data).transform_fold(
 #     ['temperature', 'humidity', 'carbon dioxide, VOCs, particulate 1.0, particulate 2.5']
