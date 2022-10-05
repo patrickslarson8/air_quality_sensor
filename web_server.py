@@ -8,19 +8,18 @@ conn = lite.connect('sensorsData.db')
 
 # Get information from database into a dataframe
 selectStatement = "SELECT * FROM SENSORS_data;"
-df = pd.read_sql_query(selectStatement, conn)
+data = pd.read_sql_query(selectStatement, conn)
 
-# base = alt.Chart(data).transform_fold(
-#     ['temperature', 'humidity', 'carbon dioxide, VOCs, particulate 1.0, particulate 2.5']
-# )
-# line = base.mark_line().encode(
-#     x='date:T',
-#     y=alt.Y('value:Q', axis=alt.Axis(title='air quality')),
-#     color='key:N',
-#     tooltip=['yearmonthdate(date)']
-# ).properties(width=700)
-#
-# line
+base = alt.Chart(data).transform_fold(
+     ['temperature', 'humidity', 'carbon dioxide, VOCs, particulate 1.0, particulate 2.5'])
+line = base.mark_line().encode(
+    x='date:T',
+    y=alt.Y('value:Q', axis=alt.Axis(title='air quality')),
+    color='key:N',
+    tooltip=['yearmonthdate(date)']
+    ).properties(width=700)
+
+line
 
 app = Flask(__name__)
 @app.route('/')
