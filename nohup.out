@@ -1,0 +1,7 @@
+Waiting for readings to stabilize
+Traceback (most recent call last):
+  File "/home/pi/air_quality_sensor/air_quality.py", line 68, in <module>
+    aqdata = pm25.read()
+  File "/home/pi/.local/lib/python3.9/site-packages/adafruit_pm25/__init__.py", line 93, in read
+    raise RuntimeError("Invalid PM2.5 checksum")
+RuntimeError: Invalid PM2.5 checksum
