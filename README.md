@@ -37,7 +37,20 @@ sqlite> COMMIT;
 
 5. Configure air_quality.py and webserver.py to autostart
 
+- Open air_quality.service in a text editor and ensure the two locations for ExecStart point to your python interpretor and air_quality.py locations
+- Copy air_quality.service to /lib/systemd/system/
+- Add the correct permissions to the service file
+
 ~~~bash
+sudo chmod 644 /lib/systemd/system/air_quality.service
+~~~
+
+- Configure service to start
+
+~~~bash
+sudo systemctl daemon-reload
+sudo systemctl enable air_quality.service
+sudo reboot
 ~~~
 
 ## Todo list
