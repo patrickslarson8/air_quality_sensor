@@ -23,7 +23,7 @@ sudo apt-get install sqlite3 python3-pip
 3. Install requirements.txt
 
 ~~~bash
-pip3 install -r requirements.txt
+sudo pip3 install -r requirements.txt
 ~~~
 
 4. Create SQLite database
