@@ -62,7 +62,7 @@ sudo reboot
 
 ## Todo list
 
-### Set up database
+### Configure reboot
 
 ### Set up webserver
 
