@@ -4,7 +4,7 @@ import sqlite3 as lite
 import pandas as pd
 
 # Create connection to database
-conn = lite.connect('sensorsData.db')
+conn = lite.connect('sensorsData.db', check_same_thread=False)
 
 # Get information from database into a dataframe
 selectStatement = "SELECT * FROM SENSORS_data;"
@@ -37,7 +37,8 @@ app = Flask(__name__)
 def index():
      cur = conn.cursor()
      cur.execute("SELECT * FROM SENSORS_data ORDER BY timestamp DESC LIMIT 10;")
-     return cur.fetchall()
+     rows = cur.fetchall()
+     return rows
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')
