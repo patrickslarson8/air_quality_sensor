@@ -33,5 +33,8 @@ def index():
                'plot_global_time_series': plot_global_time_series, 'plot_geo_analysis': plot_geo_analysis}
     return render_template('index.html', context=context)
 
+@app.route('/current_readings')
+def index():
+     return data[-1]
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')
