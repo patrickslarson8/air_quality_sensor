@@ -23,18 +23,21 @@ line
 
 app = Flask(__name__)
 @app.route('/')
-def index():
-    #ploting
-    plot_global_cases_per_country = altair_plot.altair_global_cases_per_country(final_df)
-    plot_global_time_series = altair_plot.altair_global_time_series(
-        timeseries_final)
-    plot_geo_analysis = altair_plot.altair_geo_analysis(final_df)
-    context = {'plot_global_cases_per_country': plot_global_cases_per_country,
-               'plot_global_time_series': plot_global_time_series, 'plot_geo_analysis': plot_geo_analysis}
-    return render_template('index.html', context=context)
+#def index():
+#    #ploting
+#    plot_global_cases_per_country = altair_plot.altair_global_cases_per_country(final_df)
+#    plot_global_time_series = altair_plot.altair_global_time_series(
+#        timeseries_final)
+#    plot_geo_analysis = altair_plot.altair_geo_analysis(final_df)
+#    context = {'plot_global_cases_per_country': plot_global_cases_per_country,
+#               'plot_global_time_series': plot_global_time_series, 'plot_geo_analysis': plot_geo_analysis}
+#    return render_template('index.html', context=context)
 
-@app.route('/current_readings')
+@app.route('/')
 def index():
-     return data[-1]
+     cur = conn.cursor()
+     cur.execute("SELECT * FROM SENSORS_data ORDER BY timestamp DESC LIMIT 10;")
+     return cur.fetchall()
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')
