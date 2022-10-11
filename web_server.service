@@ -1,0 +1,13 @@
+[Unit]
+Description=Service to run air quality sensors
+After=multi-user.target
+
+[Service]
+WorkingDirectory=/home/pi/air_quality_sensor/
+User=pi
+Type=idle
+ExecStart=/usr/bin/python3 /home/pi/air_quality_sensor/web_server.py
+Requires=air_quality.service
+
+[Install]
+WantedBy=multi-user.target
