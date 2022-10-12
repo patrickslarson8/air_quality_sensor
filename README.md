@@ -60,6 +60,7 @@ sudo chmod 644 /lib/systemd/system/web_server.service
 ~~~bash
 sudo systemctl daemon-reload
 sudo systemctl enable air_quality.service
+sudo systemctl enable web_server.servce
 sudo reboot
 ~~~
 
