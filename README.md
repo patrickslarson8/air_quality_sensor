@@ -49,7 +49,10 @@ sqlite> COMMIT;
 - Add the correct permissions to the service file
 
 ~~~bash
+sudo cp air_quality.servce /lib/systemd/system/air_quality.service
 sudo chmod 644 /lib/systemd/system/air_quality.service
+sudo cp web_server.service /lib/systemd/system/web_server.service
+sudo chmod 644 /lib/systemd/system/web_server.service
 ~~~
 
 - Configure service to start
