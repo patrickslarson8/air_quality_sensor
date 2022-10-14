@@ -40,5 +40,12 @@ def index():
      rows = cur.fetchall()
      return rows
 
+@app.route('/current')
+def index():
+     cur = conn.cursor()
+     cur.execute("SELECT * FROM SENSORS_data ORDER BY timestamp DESC LIMIT 1;")
+     rows = cur.fetchall()
+     return rows
+
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')
