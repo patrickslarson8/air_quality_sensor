@@ -20,14 +20,14 @@ cd ~
 git clone https://github.com/patrickslarson8/air_quality_sensor.git
 ~~~
 
-2. Install requirements
+2. Install requirements on system
 
 ~~~bash
 cd air_quality_sensor
 sudo apt-get install sqlite3 python3-pip
 ~~~
 
-3. Install requirements.txt
+3. Install python packages
 
 ~~~bash
 pip3 install -r requirements.txt
@@ -44,7 +44,7 @@ sqlite> COMMIT;
 
 5. Configure air_quality.py and webserver.py to autostart
 
-- Open air_quality.service in a text editor and ensure the two locations for ExecStart point to your python interpretor and air_quality.py locations
+- Open air_quality.service and web_server.service in a text editor and ensure the two locations for ExecStart point to your python interpretor and air_quality.py locations
 - Copy air_quality.service to /lib/systemd/system/
 - Add the correct permissions to the service file
 
