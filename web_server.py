@@ -38,7 +38,7 @@ def index():
      cur = conn.cursor()
      cur.execute("SELECT * FROM SENSORS_data ORDER BY timestamp DESC LIMIT 10;")
      rows = cur.fetchall()
-     formatted_information = f" Date and time {rows[0,0]}\n Temperature: {rows[0,1]}\n Humidity {rows[0,2]}\n CO2: {rows[0,3]}\n VOC: {rows[0,4]}\n PM10: {rows[0,5]}\n PM25: {rows[0,6]}\n"
+     formatted_information = f" Date and time {rows[0][0]}\n Temperature: {rows[0][1]}\n Humidity {rows[0][2]}\n CO2: {rows[0][3]}\n VOC: {rows[0][4]}\n PM10: {rows[0][5]}\n PM25: {rows[0][6]}\n"
      return formatted_information
 
 @app.route('/current')
