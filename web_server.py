@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import altair as alt
 import sqlite3 as lite
 import pandas as pd
@@ -22,7 +22,7 @@ line = base.mark_line().encode(
 line
 
 app = Flask(__name__)
-@app.route('/')
+#@app.route('/')
 #def index():
 #    #ploting
 #    plot_global_cases_per_country = altair_plot.altair_global_cases_per_country(final_df)
@@ -47,6 +47,10 @@ def index2():
      cur.execute("SELECT * FROM SENSORS_data ORDER BY timestamp DESC LIMIT 1;")
      rows = cur.fetchall()
      return rows
+
+@app.route('/template')
+def template():
+     return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')
