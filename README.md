@@ -38,7 +38,8 @@ pip3 install -r requirements.txt
 ~~~bash
 sqlite3 sensorsData.db
 sqlite> BEGIN;
-sqlite> CREATE TABLE SENSORS_data (timestamp DATETIME, temp NUMERIC, humid NUMERIC, carbon NUMERIC, voc NUMERIC, pm10 NUMERIC, pm25 NUMERIC, note TEXT);
+sqlite> CREATE TABLE Data (timestamp DATETIME, temp NUMERIC, humid NUMERIC, carbon NUMERIC, voc NUMERIC, pm10 NUMERIC, pm25 NUMERIC);
+sqlite> CREATE TABLE Notes (DataId NUMERIC, Note TEXT);
 sqlite> COMMIT;
 ~~~
 
