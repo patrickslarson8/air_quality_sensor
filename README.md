@@ -38,7 +38,8 @@ pip3 install -r requirements.txt
 ~~~bash
 sqlite3 sensorsData.db
 sqlite> BEGIN;
-sqlite> CREATE TABLE SENSORS_data (timestamp DATETIME, temp NUMERIC, humid NUMERIC, carbon NUMERIC, voc NUMERIC, pm10 NUMERIC, pm25 NUMERIC, note TEXT);
+sqlite> CREATE TABLE Data (timestamp DATETIME, temp NUMERIC, humid NUMERIC, carbon NUMERIC, voc NUMERIC, pm10 NUMERIC, pm25 NUMERIC);
+sqlite> CREATE TABLE Notes (DataId NUMERIC, Note TEXT);
 sqlite> COMMIT;
 ~~~
 
@@ -66,11 +67,13 @@ sudo reboot
 
 ## Todo list
 
-### Configure reboot
-
-### Set up webserver
-
-(https://medium.com/@rovai/from-data-to-graph-a-web-jorney-with-flask-and-sqlite-6c2ec9c0ad0)  
-1. Create webpage
-2. Create webserver
-3. Update page with data from DB
+1. Complete web page display
+2. Add notes input to web page
+3. Configure RPi to reboot regularly
+4. Make air_quality service fault tolerant
+  - Sensor Disconnect
+  - Database non-existance
+5. Normalize database in program files
+  - Add join table for notes and data
+6. Prepare for deployment to lower power devices
+  - Change polling rate to something lower (currently every 5 seconds)
