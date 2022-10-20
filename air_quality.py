@@ -14,6 +14,7 @@ from adafruit_pm25.uart import PM25_UART
 import sqlite3 as lite
 import sys
 
+try
 # Connect to local database
 con = lite.connect('sensorsData.db')
 
@@ -22,9 +23,7 @@ i2c = busio.I2C(board.SCL, board.SDA, frequency=100000)
 uart = serial.Serial("/dev/ttyS0", baudrate=9600, timeout=0.25)
 
 reset_pin = None
-#reset_pin = DigitalInOut(board.G0)
-#reset_pin.direction = Direction.OUTPUT
-#reset_pin.value = False
+
 
 # Set up devices
 # sgp
