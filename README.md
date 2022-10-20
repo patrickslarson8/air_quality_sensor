@@ -69,3 +69,4 @@ sudo reboot
 
 1. Configure RPi to reboot regularly
 2. Make air_quality service fault tolerant of sensor disconnect
+3. Normalize database in program files (already changed in readme)
