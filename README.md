@@ -67,11 +67,5 @@ sudo reboot
 
 ## Todo list
 
-### Configure reboot
-
-### Set up webserver
-
-(https://medium.com/@rovai/from-data-to-graph-a-web-jorney-with-flask-and-sqlite-6c2ec9c0ad0)  
-1. Create webpage
-2. Create webserver
-3. Update page with data from DB
+1. Configure RPi to reboot regularly
+2. Make air_quality service fault tolerant of sensor disconnect
