@@ -67,6 +67,13 @@ sudo reboot
 
 ## Todo list
 
-1. Configure RPi to reboot regularly
-2. Make air_quality service fault tolerant of sensor disconnect
-3. Normalize database in program files (already changed in readme)
+1. Complete web page display
+2. Add notes input to web page
+3. Configure RPi to reboot regularly
+4. Make air_quality service fault tolerant
+  - Sensor Disconnect
+  - Database non-existance
+5. Normalize database in program files
+  - Add join table for notes and data
+6. Prepare for deployment to lower power devices
+  - Change polling rate to something lower (currently every 5 seconds)
