@@ -10,7 +10,7 @@ conn = lite.connect('sensorsData.db', check_same_thread=False)
 selectStatement = "SELECT * FROM SENSORS_data;"
 data = pd.read_sql_query(selectStatement, conn)
 
-def get_top_data()
+def get_top_data():
      cur = conn.cursor()
      cur.execute("SELECT * FROM SENSORS_data ORDER BY timestamp DESC LIMIT 10;")
      rows = cur.fetchall()
@@ -28,16 +28,13 @@ def altair_global_timeseries(data):
     tooltip=['yearmonthdate(date)','daily new cases',
       'daily new recovered', 'daily new deaths']
     ).properties(width=700)
-   chart_json = line.to_json()
-   return chart_json
+    chart_json = line.to_json()
+    return chart_json
 
-def altair_tempurature(data)
+def altair_temperature(data):
      base = alt.Chart(data)
-     line = base.mark_line().encode(
-     x = data[0][0], y=alt.Y(rows[0][1], axis=alt.Axis(title='Temperature'),
-     color='black',
-     tooltip=['Temperature'].properties(width=700)
-     chart_jason = line.to_json()
+     line = base.mark_line().encode(x = data[0][0], y=alt.Y(data[0][1], axis=alt.Axis(title='Temperature')),color='black',tooltip=['Temperature'])
+     chart_json = line.to_json()
      return chart_json
 
 app = Flask(__name__)
@@ -58,7 +55,7 @@ def index2():
 @app.route('/template')
 def template():
      rows = get_top_data()
-     context = altair_tempurature(rows)
+     context = altair_temperature(rows)
      return render_template('index.html', context = context)
 
 

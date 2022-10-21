@@ -7,38 +7,28 @@ put your custom script or styling here
 
 {% block my_content %}
 
-<!-- Plotly plot placeholder -->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col">
-        </div>
-            <div class="col-6">
-                <!-- Placeholder for map-->
-                <div class="chart" id="plotly-geo">
-                    <p>div1</p>
-                    <p>{{context}}</p>
-                </div>
-            </div>
-        <div class="col">
-        </div>
-    </div>
-        <div class="row">
-        <!-- Placeholder for the global-cases plot-->
-            <div class="chart" id="plotly-global">
-                <p>div2</p>
-                <p>{{context}}</p>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <!-- Placeholder for global-time series -->
-            <div id="plotly-timeseries"></div>
-            <p>div3</p>
-            <p>{{context}}</p>
-        </div>
-    </div>
+<div *id*="altair-timeseries"></div>
 </div>
-<!-- Script to execute the Json ( we can create it also with looping) 
+<!-- Placeholder for the tooltip -->
+<div *id*="vis-tooltip" *class*="vg-tooltip"></div>
+</div>
 
--->
+<!-- Render Charts -->
+<script type="text/javascript">
+    function parse(url, div) {
+        var opt = {
+            mode: "vega-lite",
+            renderer: "svg",
+            actions: { export: true, source: false, editor: false }
+        };
+        vegaEmbed("#" + div, url, opt, function (error, result) {
+            // result.view is the Vega View, url is the original Vega-Lite specification
+            vegaTooltip.vegaLite(result.view, url);
+        });
+    }
+
+    //Parse your Json variable here
+    parse({{ context | safe }}, "altair-timeseries")
+</script>
+
 {% endblock my_content %}
