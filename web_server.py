@@ -14,6 +14,8 @@ def get_top_data():
      cur = conn.cursor()
      cur.execute("SELECT * FROM SENSORS_data ORDER BY timestamp DESC LIMIT 10;")
      rows = cur.fetchall()
+     rows = pd.read_sql("SELECT * FROM SENSORS_data ORDER BY timestamp DESC LIMIT 10;",
+     conn)
      return rows
 
 ## For reference
@@ -31,9 +33,9 @@ def altair_global_timeseries(data):
     chart_json = line.to_json()
     return chart_json
 
-def altair_temperature(data):
-     base = alt.Chart(data)
-     line = base.mark_line().encode(x = data[0][0], y=alt.Y(data[0][1], axis=alt.Axis(title='Temperature')),color='black',tooltip=['Temperature'])
+def altair_temperature(df):
+     base = alt.Chart(df)
+     line = base.mark_line().encode(x = 'timestamp', y='temp')
      chart_json = line.to_json()
      return chart_json
 
@@ -47,9 +49,7 @@ def index():
 
 @app.route('/current')
 def index2():
-     cur = conn.cursor()
-     cur.execute("SELECT * FROM SENSORS_data ORDER BY timestamp DESC LIMIT 1;")
-     rows = cur.fetchall()
+     rows = get_top_data()
      return rows
 
 @app.route('/template')
