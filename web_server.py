@@ -35,7 +35,7 @@ def altair_global_timeseries(data):
 
 def altair_temperature(df):
      base = alt.Chart(df)
-     line = base.mark_line().encode(x = 'timestamp', y='temp')
+     line = base.mark_line().encode(x = 'timestamp:T', y='temp:Q')
      chart_json = line.to_json()
      return chart_json
 

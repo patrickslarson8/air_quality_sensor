@@ -7,11 +7,9 @@ put your custom script or styling here
 
 {% block my_content %}
 
-<div *id*="altair-timeseries"></div>
+<div id="temperature_timeseries"></div>
 </div>
-<!-- Placeholder for the tooltip -->
-<div *id*="vis-tooltip" *class*="vg-tooltip"></div>
-</div>
+
 
 <!-- Render Charts -->
 <script type="text/javascript">
@@ -28,7 +26,7 @@ put your custom script or styling here
     }
 
     //Parse your Json variable here
-    parse({{ context | safe }}, "altair-timeseries")
+    parse({{ context | safe }}, "temperature_timeseries")
 </script>
 
 {% endblock my_content %}
