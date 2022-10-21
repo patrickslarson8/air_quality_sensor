@@ -1,32 +1,16 @@
-{% block script %}
-<!-- 
-put your custom script or styling here
--->
-{% endblock script %}
-
-
-{% block my_content %}
-
-<div id="temperature_timeseries"></div>
-</div>
-
-
-<!-- Render Charts -->
-<script type="text/javascript">
-    function parse(url, div) {
-        var opt = {
-            mode: "vega-lite",
-            renderer: "svg",
-            actions: { export: true, source: false, editor: false }
-        };
-        vegaEmbed("#" + div, url, opt, function (error, result) {
-            // result.view is the Vega View, url is the original Vega-Lite specification
-            vegaTooltip.vegaLite(result.view, url);
-        });
-    }
-
-    //Parse your Json variable here
-    parse({{ context | safe }}, "temperature_timeseries")
-</script>
-
-{% endblock my_content %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vega@3"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
+  </head>
+  <body>
+    <div id="vis"></div>
+    <script type="text/javascript">
+      var spec = {{context | safe}};  /* JSON dump of your chart's spec */
+      var opt = {"renderer": "canvas", "actions": false};  /* Options for the embedding */
+      vegaEmbed("#vis", spec, opt);
+    </script>
+  </body>
+</html>
