@@ -1,6 +1,8 @@
 # Physical Enclosure Files
 
-TODO:
+## How to use
+
+## TODO
 
 - Add air vent holes to intake and exhaust sides
 - adjust indent for sgp40 location to make room for QT connector
