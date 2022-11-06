@@ -14,7 +14,6 @@ from adafruit_pm25.uart import PM25_UART
 import sqlite3 as lite
 import sys
 
-try
 # Connect to local database
 con = lite.connect('sensorsData.db')
 
