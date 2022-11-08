@@ -13,6 +13,14 @@ Adafruit PM 2.5 Sensor (https://learn.adafruit.com/pm25-air-quality-sensor)
 
 ## How to use
 
+### Wiring
+
+- Notice that we are using the voltage regulator of the SGP40 to power the SCD40. This is because there is limited current supply from the Raspberry Pi and the RPi is notorious for weird bugs when underpowered.
+- Additionally we need two wires that are split (purple and brown) so that both SGP40 & SCD40 can share the RPi i2c pins.
+![](assets/pin-connections.png)
+
+### Coding
+
 1. Download repo
 
 ~~~bash
