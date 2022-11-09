@@ -15,7 +15,7 @@ import sqlite3 as lite
 import sys
 
 # Connect to local database
-con = lite.connect('sensorsData.db')
+con = lite.connect('database.db')
 
 # Set up IO
 i2c = busio.I2C(board.SCL, board.SDA, frequency=100000)
@@ -70,7 +70,7 @@ while True:
   # log sensors
   # Table format is:
   # time, temp, humid, carbon, voc, pm10, pm25
-  newEntry = "INSERT INTO SENSORS_data (timestamp, temp, humid, carbon, voc, pm10, pm25) VALUES (datetime('now'), {}, {}, {}, {}, {}, {});".format(myAir.temp, myAir.humid, myAir.co2, myAir.voc, myAir.pm10, myAir.pm25)
+  newEntry = "INSERT INTO sensor_data (timestamp, temp, humid, carbon, voc, pm10, pm25) VALUES (datetime('now'), {}, {}, {}, {}, {}, {});".format(myAir.temp, myAir.humid, myAir.co2, myAir.voc, myAir.pm10, myAir.pm25)
   #print(newEntry) 
   cur.execute(newEntry)
   con.commit()

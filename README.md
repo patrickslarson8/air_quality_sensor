@@ -44,21 +44,21 @@ pip3 install -r requirements.txt
 4. Create SQLite database
 
 ~~~bash
-sqlite3 sensorsData.db
+sqlite3 database.db
 sqlite> BEGIN;
-sqlite> CREATE TABLE Data (timestamp DATETIME, temp NUMERIC, humid NUMERIC, carbon NUMERIC, voc NUMERIC, pm10 NUMERIC, pm25 NUMERIC);
-sqlite> CREATE TABLE Notes (DataId NUMERIC, Note TEXT);
+sqlite> CREATE TABLE sensor_table (timestamp DATETIME, temp NUMERIC, humid NUMERIC, carbon NUMERIC, voc NUMERIC, pm10 NUMERIC, pm25 NUMERIC);
+sqlite> CREATE TABLE note_table (timestamp DATETIME, note text);
 sqlite> COMMIT;
 ~~~
 
-5. Configure air_quality.py and webserver.py to autostart
+1. Configure air_quality.py and webserver.py to autostart
 
 - Open air_quality.service and web_server.service in a text editor and ensure the two locations for ExecStart point to your python interpretor and air_quality.py locations
 - Copy air_quality.service to /lib/systemd/system/
 - Add the correct permissions to the service file
 
 ~~~bash
-sudo cp air_quality.servce /lib/systemd/system/air_quality.service
+sudo cp air_quality.service /lib/systemd/system/air_quality.service
 sudo chmod 644 /lib/systemd/system/air_quality.service
 sudo cp web_server.service /lib/systemd/system/web_server.service
 sudo chmod 644 /lib/systemd/system/web_server.service
@@ -69,7 +69,7 @@ sudo chmod 644 /lib/systemd/system/web_server.service
 ~~~bash
 sudo systemctl daemon-reload
 sudo systemctl enable air_quality.service
-sudo systemctl enable web_server.servce
+sudo systemctl enable web_server.service
 sudo reboot
 ~~~
 
