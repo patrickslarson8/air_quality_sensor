@@ -4,3 +4,5 @@ nohup.out
 *.drawio
 *.swp
 *.txt
+/.*
+*.xml
