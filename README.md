@@ -83,5 +83,3 @@ sudo reboot
   - Database non-existance
 5. Normalize database in program files
   - Add join table for notes and data
-6. Prepare for deployment to lower power devices
-  - Change polling rate to something lower (currently every 5 seconds)
