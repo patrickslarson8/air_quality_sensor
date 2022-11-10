@@ -6,3 +6,4 @@ nohup.out
 *.txt
 /.*
 *.xml
+*.f3d
