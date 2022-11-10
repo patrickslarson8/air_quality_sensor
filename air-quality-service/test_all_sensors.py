@@ -41,4 +41,4 @@ while True:
     print("pm2.5: {}".format(aqdata["pm25 env"]))
 
     # Sleep for timing interval
-    time.sleep(5)
+    time.sleep(60)

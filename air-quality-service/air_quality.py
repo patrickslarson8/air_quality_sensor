@@ -70,10 +70,10 @@ while True:
   # log sensors
   # Table format is:
   # time, temp, humid, carbon, voc, pm10, pm25
-  newEntry = "INSERT INTO sensor_data (timestamp, temp, humid, carbon, voc, pm10, pm25) VALUES (datetime('now'), {}, {}, {}, {}, {}, {});".format(myAir.temp, myAir.humid, myAir.co2, myAir.voc, myAir.pm10, myAir.pm25)
+  newEntry = "INSERT INTO sensor_table (timestamp, temp, humid, carbon, voc, pm10, pm25) VALUES (datetime('now'), {}, {}, {}, {}, {}, {});".format(myAir.temp, myAir.humid, myAir.co2, myAir.voc, myAir.pm10, myAir.pm25)
   #print(newEntry) 
   cur.execute(newEntry)
   con.commit()
   
   # Sleep for timing interval
-  time.sleep(5)
+  time.sleep(60)
