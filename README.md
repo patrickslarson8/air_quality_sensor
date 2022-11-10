@@ -84,3 +84,4 @@ sudo reboot
   - Database non-existance
 5. Normalize database in program files
   - Add join table for notes and data
+6. Fix time drift for polling (doesn't account for time taken to execute)

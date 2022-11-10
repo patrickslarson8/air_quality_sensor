@@ -3,7 +3,7 @@ Description=Service to run air quality sensors
 After=multi-user.target
 
 [Service]
-WorkingDirectory=/home/pi/air_quality_sensor/
+WorkingDirectory=/home/pi/air_quality_sensor/air-quality-service
 User=pi
 Type=idle
 ExecStart=/usr/bin/python3 /home/pi/air_quality_sensor/air-quality-service/air_quality.py
