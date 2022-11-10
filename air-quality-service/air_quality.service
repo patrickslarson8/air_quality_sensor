@@ -6,7 +6,7 @@ After=multi-user.target
 WorkingDirectory=/home/pi/air_quality_sensor/
 User=pi
 Type=idle
-ExecStart=/usr/bin/python3 /home/pi/air_quality_sensor/air_quality.py
+ExecStart=/usr/bin/python3 /home/pi/air_quality_sensor/air-quality-service/air_quality.py
 
 [Install]
 WantedBy=multi-user.target
