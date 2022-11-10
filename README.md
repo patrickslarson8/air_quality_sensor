@@ -44,6 +44,7 @@ pip3 install -r requirements.txt
 4. Create SQLite database
 
 ~~~bash
+cd air-quality-service
 sqlite3 database.db
 sqlite> BEGIN;
 sqlite> CREATE TABLE sensor_table (timestamp DATETIME, temp NUMERIC, humid NUMERIC, carbon NUMERIC, voc NUMERIC, pm10 NUMERIC, pm25 NUMERIC);
