@@ -4,7 +4,7 @@ import sqlite3 as lite
 import pandas as pd
 
 # Create connection to database
-conn = lite.connect('database.db', check_same_thread=False)
+conn = lite.connect('../air-quality-service/database.db', check_same_thread=False)
 
 def get_top_data_as_df():
      #cur = conn.cursor()
