@@ -38,9 +38,9 @@ def altair_temp_and_humid(df):
      alt.Y('humid:Q', axis=alt.Axis(titleColor='#F18727'))
      )
 
-     alt.layer(line_A, line_B).resolve_scale(y='independent')
+     base = alt.layer(line_A, line_B).resolve_scale(y='independent')
 
-     chart_json = line_A.to_json();
+     chart_json = base.to_json();
      return chart_json
 
 ## Create new context with several lines/charts
