@@ -69,7 +69,6 @@ while True:
   # If it hasn't been a second, sleep until it has been
   time_passed_sgp = time.time_ns() - time_last_sgp_reading
   if (time_passed_sgp < 1000000000):
-    print("Sleeping for sgp")
     #update to nanoseconds
     time.sleep(1-(time_passed_sgp/1000000000))
   
@@ -92,3 +91,4 @@ while True:
     #print(newEntry) 
     cur.execute(newEntry)
     con.commit()
+    time_last_gen_reading = time.time()
