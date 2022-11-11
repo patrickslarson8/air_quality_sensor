@@ -1,4 +1,5 @@
 # This script captures data from the sensors and logs it.
+# TODO: add prep loop to stabilize voc algorithm before logging to database
 
 import time
 import board
@@ -55,6 +56,7 @@ with con:
 
 time_polling_rate = 60
 time_last_sgp_reading = time.time_ns()
+time_last_gen_reading = time.time()
 
 # Get temp and humid readings first to be used in VOC
 myAir.temp = scd4x.temperature
