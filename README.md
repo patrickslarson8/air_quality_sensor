@@ -32,13 +32,13 @@ git clone https://github.com/patrickslarson8/air_quality_sensor.git
 
 ~~~bash
 cd air_quality_sensor
-sudo apt-get install sqlite3 python3-pip
+sudo apt-get install sqlite3 python3-pip libatlas-base-dev
 ~~~
 
 3. Install python packages
 
 ~~~bash
-pip3 install -r requirements.txt
+sudo pip3 install -r requirements.txt
 ~~~
 
 4. Create SQLite database

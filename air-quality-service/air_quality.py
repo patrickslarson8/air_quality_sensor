@@ -1,7 +1,4 @@
 # This script captures data from the sensors and logs it.
-# Todo:
-# 2. Log data to prevent memory filling
-# 3. Create web dashboard for tracking
 
 import time
 import board
