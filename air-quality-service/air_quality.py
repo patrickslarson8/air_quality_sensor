@@ -56,24 +56,41 @@ time.sleep(180)  # pm25 requires 30 sec. SGP40 recommends several minutes before
 with con:
   cur = con.cursor()
 
+time_polling_rate = 60
+time_last_sgp_reading = time.time_ns()
+
+# Get temp and humid readings first to be used in VOC
+myAir.temp = scd4x.temperature
+myAir.humid = scd4x.relative_humidity
+
+# Trick to get temp and humid first before talking to sgp
+time_last_gen_readings = time.time() - time_polling_rate +1
 while True:
   # Read sensors
-  # Get temp and humid readings first to be used in VOC
-  myAir.temp = scd4x.temperature
-  myAir.humid = scd4x.relative_humidity
-  myAir.co2 = scd4x.CO2
+  
+  # The SGP sensor algorithm is hardcoded and expects a 1 hz polling rate
+  # If it hasn't been a second, sleep until it has been
+  time_passed_sgp = time.time_ns() - time_last_sgp_reading
+  if (time_passed_sgp < 1000000000):
+    #update to nanoseconds
+    time.sleep(1-(time_passed_sgp/1000000000))
+  
   myAir.voc = sgp.measure_index(temperature=myAir.temp, relative_humidity=myAir.humid)
-  aqdata = pm25.read()
-  myAir.pm10 = aqdata["pm10 env"]
-  myAir.pm25 = aqdata["pm25 env"]
+  time_last_sgp_reading = time.time_ns()
   
-  # log sensors
-  # Table format is:
-  # time, temp, humid, carbon, voc, pm10, pm25
-  newEntry = "INSERT INTO sensor_table (timestamp, temp, humid, carbon, voc, pm10, pm25) VALUES (datetime('now'), {}, {}, {}, {}, {}, {});".format(myAir.temp, myAir.humid, myAir.co2, myAir.voc, myAir.pm10, myAir.pm25)
-  #print(newEntry) 
-  cur.execute(newEntry)
-  con.commit()
-  
-  # Sleep for timing interval
-  time.sleep(60)
+  time_passed_general = time.time() - time_last_gen_readings
+  if (time_passed_general > 60):
+    myAir.temp = scd4x.temperature
+    myAir.humid = scd4x.relative_humidity
+    myAir.co2 = scd4x.CO2
+    aqdata = pm25.read()
+    myAir.pm10 = aqdata["pm10 env"]
+    myAir.pm25 = aqdata["pm25 env"]
+    
+    # log sensors
+    # Table format is:
+    # time, temp, humid, carbon, voc, pm10, pm25
+    newEntry = "INSERT INTO sensor_table (timestamp, temp, humid, carbon, voc, pm10, pm25) VALUES (datetime('now'), {}, {}, {}, {}, {}, {});".format(myAir.temp, myAir.humid, myAir.co2, myAir.voc, myAir.pm10, myAir.pm25)
+    #print(newEntry) 
+    cur.execute(newEntry)
+    con.commit()
