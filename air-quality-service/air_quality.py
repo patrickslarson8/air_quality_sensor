@@ -60,8 +60,6 @@ time_last_sgp_reading = time.time_ns()
 myAir.temp = scd4x.temperature
 myAir.humid = scd4x.relative_humidity
 
-# Trick to get temp and humid first before talking to sgp
-time_last_gen_readings = time.time() - time_polling_rate +1
 while True:
   # Read sensors
   
@@ -69,6 +67,7 @@ while True:
   # If it hasn't been a second, sleep until it has been
   time_passed_sgp = time.time_ns() - time_last_sgp_reading
   if (time_passed_sgp < 1000000000):
+    print("Sleeping for sgp")
     #update to nanoseconds
     time.sleep(1-(time_passed_sgp/1000000000))
   
