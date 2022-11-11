@@ -4,13 +4,13 @@ import sqlite3 as lite
 import pandas as pd
 
 # Create connection to database
-conn = lite.connect('sensorsData.db', check_same_thread=False)
+conn = lite.connect('database.db', check_same_thread=False)
 
 def get_top_data_as_df():
      cur = conn.cursor()
      cur.execute("SELECT * FROM SENSORS_data ORDER BY timestamp DESC LIMIT 10;")
      rows = cur.fetchall()
-     rows = pd.read_sql("SELECT * FROM SENSORS_data ORDER BY timestamp DESC LIMIT 1000;",conn)
+     rows = pd.read_sql("SELECT * FROM SENSORS_data ORDER BY timestamp DESC LIMIT 10;",conn)
      return rows
 
 def get_every_nth_row_as_df(n):
