@@ -40,7 +40,7 @@ def altair_temp_and_humid(df):
 
      alt.layer(line_A, line_B).resolve_scale(y='independent')
 
-     chart_json = base.to_json()
+     chart_json = line_A.to_json();
      return chart_json
 
 ## Create new context with several lines/charts
@@ -56,6 +56,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
+     #currently broken TODO:
      rows = get_top_data_as_df()
      formatted_information = f" Date and time {rows[0][0]}\n Temperature: {rows[0][1]}\n Humidity {rows[0][2]}\n CO2: {rows[0][3]}\n VOC: {rows[0][4]}\n PM10: {rows[0][5]}\n PM25: {rows[0][6]}\n"
      return formatted_information
