@@ -56,13 +56,13 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-     rows = get_top_data()
+     rows = get_top_data_as_df()
      formatted_information = f" Date and time {rows[0][0]}\n Temperature: {rows[0][1]}\n Humidity {rows[0][2]}\n CO2: {rows[0][3]}\n VOC: {rows[0][4]}\n PM10: {rows[0][5]}\n PM25: {rows[0][6]}\n"
      return formatted_information
 
 @app.route('/charts')
 def template():
-     rows = get_top_data()
+     rows = get_top_data_as_df()
      #context = altair_temperature(rows)
      context = altair_temp_and_humid(rows)
      return render_template('index.html', context = context)
