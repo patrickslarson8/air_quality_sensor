@@ -74,7 +74,7 @@ while True:
   myAir.voc = sgp.measure_index(temperature=myAir.temp, relative_humidity=myAir.humid)
   time_last_sgp_reading = time.time_ns()
   
-  time_passed_general = time.time() - time_last_gen_readings
+  time_passed_general = time.time() - time_last_gen_reading
   if (time_passed_general > 60):
     myAir.temp = scd4x.temperature
     myAir.humid = scd4x.relative_humidity
