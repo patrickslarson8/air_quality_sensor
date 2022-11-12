@@ -7,9 +7,6 @@ import pandas as pd
 conn = lite.connect('../air-quality-service/database.db', check_same_thread=False)
 
 def get_top_data_as_df():
-     #cur = conn.cursor()
-     #cur.execute("SELECT * FROM sensor_table ORDER BY timestamp DESC LIMIT 10;")
-     #rows = cur.fetchall()
      rows = pd.read_sql("SELECT * FROM sensor_table ORDER BY timestamp DESC LIMIT 10;",conn)
      return rows
 
