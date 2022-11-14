@@ -36,9 +36,13 @@ def altair_temp_and_humid(df):
      )
 
      base = alt.layer(line_A, line_B).resolve_scale(y='independent')
+     return base
 
-     chart_json = base.to_json();
-     return chart_json
+def altair_voc_co2(df):
+     return base
+
+def altair_particulate_25_10(df):
+     return base
 
 ## Create new context with several lines/charts
 ## TODO
@@ -62,7 +66,7 @@ def index():
 def template():
      rows = get_top_data_as_df()
      #context = altair_temperature(rows)
-     context = altair_temp_and_humid(rows)
+     context = altair_temp_and_humid(rows).to_json()
      return render_template('index.html', context = context)
 
 if __name__ == '__main__':
