@@ -2,9 +2,11 @@ from flask import Flask, render_template
 import altair as alt
 import sqlite3 as lite
 import pandas as pd
+import os
 
 # Create connection to database
-conn = lite.connect('../air-quality-service/database.db', check_same_thread=False)
+# TODO: fix this path when going to back to deployment on RPi
+conn = lite.connect('..\\air-quality-service\\database.db', check_same_thread=False)
 
 def get_top_data_as_df():
      rows = pd.read_sql("SELECT * FROM sensor_table ORDER BY timestamp DESC LIMIT 100;",conn)
@@ -87,10 +89,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def template():
-     rows = get_top_data_as_df()
+     rows = get_all_as_df()
      chart = alt.vconcat(altair_temp_and_humid(rows), altair_voc_co2(rows))
      chart = alt.vconcat(chart, altair_particulate_25_10(rows))
-     chart.properties(width='container',height='container')
      context = chart.to_json()
      return render_template('index.html', context = context)
 
