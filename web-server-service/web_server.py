@@ -39,9 +39,35 @@ def altair_temp_and_humid(df):
      return base
 
 def altair_voc_co2(df):
+     base = alt.Chart(df).encode(
+     alt.X('timestamp:T')
+     )
+
+     line_A = base.mark_line(color='#5276A7').encode(
+     alt.Y('voc:Q', axis=alt.Axis(titleColor='#5276A7'))
+     )
+
+     line_B = base.mark_line(color='#F18727').encode(
+     alt.Y('carbon:Q', axis=alt.Axis(titleColor='#F18727'))
+     )
+
+     base = alt.layer(line_A, line_B).resolve_scale(y='independent')
      return base
 
 def altair_particulate_25_10(df):
+     base = alt.Chart(df).encode(
+     alt.X('timestamp:T')
+     )
+
+     line_A = base.mark_line(color='#5276A7').encode(
+     alt.Y('pm25:Q', axis=alt.Axis(titleColor='#5276A7'))
+     )
+
+     line_B = base.mark_line(color='#F18727').encode(
+     alt.Y('pm25:Q', axis=alt.Axis(titleColor='#F18727'))
+     )
+
+     base = alt.layer(line_A, line_B).resolve_scale(y='shared')
      return base
 
 ## Create new context with several lines/charts
@@ -65,8 +91,8 @@ def index():
 @app.route('/charts')
 def template():
      rows = get_top_data_as_df()
-     #context = altair_temperature(rows)
-     context = altair_temp_and_humid(rows).to_json()
+     context = alt.vconcat(altair_temp_and_humid(rows), altair_voc_co2(rows))
+     context = alt.vconcat(context, altair_particulate_25_10(rows)).to_json()
      return render_template('index.html', context = context)
 
 if __name__ == '__main__':
