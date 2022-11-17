@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html>
-  <head>
+{% extends "layout.html" %}
+{% block my_content %}
+
+
+<body>
+  <div id="vis"></div>
+  <script type="text/javascript">
+    var spec = {{context | safe}};  /* JSON dump of your chart's spec */
+    var opt = {"renderer": "canvas", "actions": false};  /* Options for the embedding */
+    vegaEmbed("#vis", spec, opt);
+    <!-- load requirements to render graphs -->
     <script src="https://cdn.jsdelivr.net/npm/vega@3"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
-  </head>
-  <body>
-    <div id="vis"></div>
-    <script type="text/javascript">
-      var spec = {{context | safe}};  /* JSON dump of your chart's spec */
-      var opt = {"renderer": "canvas", "actions": false};  /* Options for the embedding */
-      vegaEmbed("#vis", spec, opt);
-    </script>
-  </body>
-</html>
+  </script>
+
+{% endblock my_content %}
