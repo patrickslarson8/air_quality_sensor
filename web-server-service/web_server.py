@@ -89,11 +89,11 @@ app = Flask(__name__)
 
 @app.route('/')
 def template():
-     rows = get_all_as_df()
-     chart = alt.vconcat(altair_temp_and_humid(rows), altair_voc_co2(rows))
-     chart = alt.vconcat(chart, altair_particulate_25_10(rows))
-     context = chart.to_json()
-     return render_template('index.html', context = context)
+     rows = get_top_data_as_df()
+     chart0 = altair_temp_and_humid(rows).to_json()
+     chart1 = altair_voc_co2(rows).to_json()
+     chart2 = altair_particulate_25_10(rows).to_json()
+     return render_template('index.html', chart0 = chart0, chart1 = chart1, chart2 = chart2)
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000, host='0.0.0.0')

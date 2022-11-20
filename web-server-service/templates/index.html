@@ -3,14 +3,26 @@
 
 
 <body>
-  <div id="vis"></div>
+  <div id="chart0""></div>
+  <div id="chart1""></div>
+  <div id="chart2""></div>
   <script src="https://cdn.jsdelivr.net/npm/vega@3"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@3"></script>
   <script type="text/javascript">
-    var spec = {{context | safe}};  /* JSON dump of your chart's spec */
+    var spec = {{ chart0 | safe}};  /* JSON dump of your chart's spec */
     var opt = {"renderer": "canvas", "actions": false};  /* Options for the embedding */
-    vegaEmbed("#vis", spec, opt);
+    vegaEmbed("#chart0", spec, opt);
   </script>
+    <script type="text/javascript">
+      var spec = {{ chart1 | safe}};  /* JSON dump of your chart's spec */
+      var opt = {"renderer": "canvas", "actions": false};  /* Options for the embedding */
+      vegaEmbed("#chart1", spec, opt);
+    </script>
+      <script type="text/javascript">
+        var spec = {{ chart2 | safe}};  /* JSON dump of your chart's spec */
+        var opt = {"renderer": "canvas", "actions": false};  /* Options for the embedding */
+        vegaEmbed("#chart2", spec, opt);
+      </script>
 
 {% endblock my_content %}
