@@ -18,13 +18,13 @@ def get_all_as_df():
 
 #TODO: Develop sql statements
 def get_daily_as_df():
-     return pd.read_sql("SELECT * FROM sensor_table ORDER BY timestamp DESC LIMIT 100;",conn)
+     return pd.read_sql("SELECT * FROM sensor_table WHERE ROWID % 1440 = 0 ORDER BY timestamp DESC;",conn)
 
 def get_weekly_as_df():
-     return pd.read_sql("SELECT * FROM sensor_table ORDER BY timestamp DESC LIMIT 100;",conn)
+     return pd.read_sql("SELECT * FROM sensor_table WHERE ROWID % 10080 = 0 ORDER BY timestamp DESC;",conn)
 
 def get_monthly_as_df():
-     return pd.read_sql("SELECT * FROM sensor_table ORDER BY timestamp DESC LIMIT 100;",conn)
+     return pd.read_sql("SELECT * FROM sensor_table WHERE ROWID % 43800 = 0 ORDER BY timestamp DESC;",conn)
 
 def get_every_nth_row_as_df(n):
      cur = conn.cursor()
