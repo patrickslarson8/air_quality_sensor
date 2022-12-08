@@ -6,7 +6,7 @@ import os
 
 # Create connection to database
 # TODO: fix this path when going to back to deployment on RPi
-conn = lite.connect('air-quality-service\\database.db', check_same_thread=False)
+conn = lite.connect('..\\air-quality-service\\database.db', check_same_thread=False)
 
 def get_top_data_as_df():
      rows = pd.read_sql("SELECT * FROM sensor_table ORDER BY timestamp DESC LIMIT 100;",conn)
