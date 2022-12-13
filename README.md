@@ -4,6 +4,8 @@ A small air quality sensor that measures various
 aspects and logs them for later analysis.
 Measures: VOC, C02, temperature, PM2.5, and humidity
 
+![](assets/screenshot.jpg)
+
 ## Hardware
 
 Raspberry Pi
@@ -52,7 +54,7 @@ sqlite> CREATE TABLE note_table (timestamp DATETIME, note text);
 sqlite> COMMIT;
 ~~~
 
-1. Configure air_quality.py and webserver.py to autostart
+5. Configure air_quality.py and webserver.py to autostart
 
 - Open air_quality.service and web_server.service in a text editor and ensure the two locations for ExecStart point to your python interpretor and air_quality.py locations
 - Copy air_quality.service to /lib/systemd/system/
@@ -74,14 +76,21 @@ sudo systemctl enable web_server.service
 sudo reboot
 ~~~
 
+6. Schedule automatic reboot
+~~~bash
+sudo crontab -e
+~~~
+- Select the first option, nano
+- Add the following at the end of the file
+~~~bash
+0 6 * * * /sbin/shutdown -r now
+~~~
+- Save the file by pressing ctrl+x then y
+
 ## Todo list
 
-1. Complete web page display
-2. Add notes input to web page
-3. Configure RPi to reboot regularly
-4. Make air_quality service fault tolerant
+1. Add notes input to web page
+2. Make air_quality service fault tolerant
   - Sensor Disconnect
   - Database non-existance
-5. Normalize database in program files
-  - Add join table for notes and data
-6. Fix time drift for polling (doesn't account for time taken to execute)
+3. Fix time drift for polling (doesn't account for time taken to execute)
